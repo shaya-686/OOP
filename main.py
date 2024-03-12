@@ -1,15 +1,15 @@
-# Створіть клас Student з атрибутами name та age.
-# Додайте метод print_info, який виведе інформацію про
-# студента у на вигляді "Ім'я: {name}, Вік: {age}"
-
-class Student:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-    def print_info(self):
-        print(f"Student name: {self.name}, student age: {self.age}")
+# Створіть клас Circle з атрибутом radius та методом
+# area, який поверне площу кола з вказаним радіусом.
 
 
-student1 = Student("Bob", 20)
-student1.print_info()
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        circle_area = round(3.14 * self.radius, 2)
+        return circle_area
+
+
+circle1 = Circle(20)
+print(f"Circle area: {circle1.area()}")
