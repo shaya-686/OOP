@@ -1,28 +1,15 @@
+# Створіть клас Student з атрибутами name та age.
+# Додайте метод print_info, який виведе інформацію про
+# студента у на вигляді "Ім'я: {name}, Вік: {age}"
 
-class Animals:
-    def breath(self):
-        print("Breathing")
-
-    def move(self):
-        print("Moving")
-
-    def eat_food(self):
-        print("Eating")
-
-
-class Dogs(Animals):
-    def __init__(self, name, age, breed):
+class Student:
+    def __init__(self, name, age):
         self.name = name
         self.age = age
-        self.breed = breed
+
+    def print_info(self):
+        print(f"Student name: {self.name}, student age: {self.age}")
 
 
-class Cat(Animals):
-    pass
-
-
-my_dog = Dogs("Bob", 5, "labrador")
-my_dog_2 = Dogs("Em", 6, "labrador")
-print(my_dog.name)
-print(my_dog.age)
-print(my_dog.breed)
+student1 = Student("Bob", 20)
+student1.print_info()
