@@ -1,18 +1,27 @@
-# Створіть клас Car з атрибутами brand (марка
-# автомобіля), model (модель) та year (рік випуску).
-# Додайте метод start_engine, який виведе повідомлення
-# про те, що двигун запущено
+# Створіть клас BankAccount з атрибутами balance
+# та owner, а також методами deposit та withdraw для
+# здійснення операцій з балансом. Реалізуйте перевірку
+# на те, що баланс не може стати від'ємним.
 
 
-class Car:
-    def __init__(self, brand, model, year):
-        self.brand = brand
-        self.model = model
-        self.year = year
+class BankAccount:
+    def __init__(self, balance, owner):
+        self.balance = balance
+        self.owner = owner
 
-    def start_engine(self):
-        print(f"Двигун автомобіля марки: {self.brand} моделі:{self.model} {self.year} року запущено")
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"Balance: {self.balance}")
+
+    def withdraw(self, amount):
+        if self.balance < amount:
+            print(f"{self.owner}, balance is less then operation amount!")
+        else:
+            self.balance -= amount
+            print(f"Balance: {self.balance}")
 
 
-car1 = Car("AUDI", "A6", "2019")
-car1.start_engine()
+bankAccount1 = BankAccount(100, "Oleksandra")
+bankAccount1.deposit(200)
+bankAccount1.withdraw(50)
+bankAccount1.withdraw(300)
