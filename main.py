@@ -1,27 +1,48 @@
-# Створіть клас BankAccount з атрибутами balance
-# та owner, а також методами deposit та withdraw для
-# здійснення операцій з балансом. Реалізуйте перевірку
-# на те, що баланс не може стати від'ємним.
+# fraction
+
+class Fraction:
+    def __init__(self, nominator, denominator):
+        self.nominator = nominator
+        self.denominator = denominator
+
+    def display_fraction(self):
+        print(f"{self.nominator}/{self.denominator}")
+
+    def add(self, other_fraction):
+        result_nominator = self.nominator * other_fraction.denominator + other_fraction.nominator * self.denominator
+        result_denominator = other_fraction.denominator * self.denominator
+        return Fraction(result_nominator, result_denominator)
+
+    def subtract(self, other_fraction):
+        result_nominator = self.nominator * other_fraction.denominator - other_fraction.nominator * self.denominator
+        result_denominator = other_fraction.denominator * self.denominator
+        return Fraction(result_nominator, result_denominator)
+
+    def multiply(self, other_fraction):
+        result_nominator = self.nominator * other_fraction.nominator
+        result_denominator = other_fraction.denominator * self.denominator
+        return Fraction(result_nominator, result_denominator)
+
+    def divide(self, other_fraction):
+        result_nominator = self.nominator * other_fraction.denominator
+        result_denominator = other_fraction.nominator * self.denominator
+        return Fraction(result_nominator, result_denominator)
 
 
-class BankAccount:
-    def __init__(self, balance, owner):
-        self.balance = balance
-        self.owner = owner
+first_fraction = Fraction(10, 20)
+new_fraction = Fraction(5, 20)
 
-    def deposit(self, amount):
-        self.balance += amount
-        print(f"Balance: {self.balance}")
+first_fraction.display_fraction()
+new_fraction.display_fraction()
 
-    def withdraw(self, amount):
-        if self.balance < amount:
-            print(f"{self.owner}, balance is less then operation amount!")
-        else:
-            self.balance -= amount
-            print(f"Balance: {self.balance}")
+result_addition = first_fraction.add(new_fraction)
+result_addition.display_fraction()
 
+result_subtraction = first_fraction.subtract(new_fraction)
+result_subtraction.display_fraction()
 
-bankAccount1 = BankAccount(100, "Oleksandra")
-bankAccount1.deposit(200)
-bankAccount1.withdraw(50)
-bankAccount1.withdraw(300)
+result_multiplication = first_fraction.multiply(new_fraction)
+result_multiplication.display_fraction()
+
+result_division = first_fraction.divide(new_fraction)
+result_division.display_fraction()
