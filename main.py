@@ -32,22 +32,13 @@ class Stadium:
             return self
 
     def __eq__(self, other):
-        if self.capacity == other.capacity:
-            return True
-        else:
-            return False
+        return self.capacity == other.capacity
 
     def __gt__(self, other):
-        if self.capacity > other.capacity:
-            return True
-        else:
-            return False
+        return self.capacity > other.capacity
 
     def __lt__(self, other):
-        if self.capacity < other.capacity:
-            return True
-        else:
-            return False
+        return self.capacity < other.capacity
 
 
 stadium = Stadium("Olymp", "15.02.2000", "Ukraine", "Kyiv", 100000)
