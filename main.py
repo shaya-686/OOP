@@ -1,20 +1,37 @@
-# качина типізація
-class Duck:
-    def quack(self):
-        print("Quack!")
+# Static and dynamic polymorphism
+
+# Static polymorphism
+def add(x, y):
+    return x + y
 
 
-class Person:
-    def quack(self):
-        print("People quack!")
+result1 = add(1, 4)
+result2 = add("Hello", "world")
+
+print(result1, result2)
 
 
-def make_it_quack(obj):
-    obj.quack()
+# Dynamic polymorphism
+class Animal:
+    def make_sound(self):
+        pass
 
 
-duck = Duck()
-person = Person()
+class Dog(Animal):
+    def make_sound(self):
+        return "Bark!"
 
-make_it_quack(duck)
-make_it_quack(person)
+
+class Cat(Animal):
+    def make_sound(self):
+        return "Meow!"
+
+
+def animal_speak(animal):
+    return animal.make_sound()
+
+
+dog, cat = Dog(), Cat()
+result1 = animal_speak(dog)
+result2 = animal_speak(cat)
+print(result1, result2)
