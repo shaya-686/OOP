@@ -1,37 +1,60 @@
 # До вже реалізованого класу «Автомобіль» додайте
 # необхідні перевантажені методи та оператори.
 
-class Car:
-    def __init__(self, brand, model, year):
-        self.brand = brand
-        self.model = model
-        self.year = year
+class Book:
+    def __init__(self, title, author, genre, pages):
+        self.title = title
+        self.author = author
+        self.genre = genre
+        self.pages = pages
 
     def __str__(self):
-        return (f"Car information: "
-                f"brand - {self.brand}, "
-                f"model - {self.model},"
-                f"year - {self.year}")
+        return (f"Book information: "
+                f"brand - {self.title}, "
+                f"model - {self.author},"
+                f"genre - {self.genre},"
+                f"pages - {self.pages}")
+
+    def __add__(self, page):
+        self.pages += page
+        return self
+
+    def __sub__(self, page):
+        if self.pages < page:
+            print("The book has less pages then you provide")
+        else:
+            self.pages -= page
+            return self
 
     def __eq__(self, other):
-        return self.year == other.year
+        return self.pages == other.pages
 
     def __gt__(self, other):
-        return self.year > other.year
+        return self.pages > other.pages
 
     def __lt__(self, other):
-        return self.year < other.year
+        return self.pages < other.pages
 
 
-car1 = Car("AUDI", "A6", "2022")
-car2 = Car("AUDI", "A6", "2020")
-print(car1)
+book1 = Book("Harry Potter", "Joanne Rowling", "fantasy", 100)
+book2 = Book("Harry Potter", "Joanne Rowling", "fantasy", 100)
+print(book1, book2)
 
-if car1 == car2:
-    print("The years of this cars is the same")
-elif car1 > car2:
-    print("First car is newer then the second car")
-elif car1 < car2:
-    print("First car is older then the second car")
+print(book1 + 100)
+print(book1 - 50)
+
+if book1 == book2:
+    print("Books have the same number of pages")
+elif book1 > book2:
+    print("First book has more pages then the second")
+elif book1 < book2:
+    print("First book has less pages then the second")
 else:
-    print("Year of this cars is not equal")
+    print("Unknown case")
+
+
+
+
+
+
+
