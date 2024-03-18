@@ -1,71 +1,3 @@
-class Country:
-    def __init__(self, name, continent, population, telephoneCode, capital, cities):
-        self.name = name
-        self.continent = continent
-        self.population = population
-        self.telephoneCode = telephoneCode
-        self.capital = capital
-        self.cities = cities
-
-    def create_country(self):
-        print("Enter the information about the country: ")
-        self.name = input("Enter the country name: ")
-        self.continent = input("Enter the country continent: ")
-        self.population = input("Enter the country population: ")
-        self.telephoneCode = input("Enter the country telephone code: ")
-        self.capital = input("Enter the capital of the country: ")
-        cities = []
-        print("Add the city or press ENTER to break: ")
-        while True:
-            city = input("Enter the name of the city: ")
-            if city == "":
-                break
-            else:
-                cities.append(city)
-        self.cities = cities
-
-    def update_country(self, **kwargs):
-        for key, value in kwargs.items():
-            if key == "name":
-                self.name = value
-            elif key == "continent":
-                self.continent = value
-            elif key == "population":
-                self.population = value
-            elif key == "telephoneCode":
-                self.telephoneCode = value
-            elif key == "capital":
-                self.capital = value
-            else:
-                print("Unknown attribute")
-        self.display_country()
-
-    def add_city_to_country(self, city):
-        if city in self.cities:
-            print("City is already exist")
-        else:
-            self.cities.append(city)
-            print(f"{city} is added to the {self.name}")
-            self.display_country()
-
-    def delete_city_from_country(self, city):
-        if city in self.cities:
-            self.cities.remove(city)
-            print("City is deleted")
-            self.display_country()
-        else:
-            print(f"{city} is not found in {self.name}")
-
-    def display_country(self):
-        print(f"Information about the country: "
-              f"name - {self.name}, "
-              f"continent - {self.continent}, "
-              f"population - {self.population},"
-              f"telephoneCode - {self.telephoneCode},"
-              f"capital - {self.capital},"
-              f"cities - {self.cities}")
-
-
 class City:
     def __init__(self, name, region, country, population, zipCode, telephoneCode):
         self.name = name
@@ -80,59 +12,60 @@ class City:
         self.name = input("Enter the city name: ")
         self.region = input("Enter the city region: ")
         self.country = input("Enter the city country: ")
-        self.population = input("Enter the city population: ")
+        while True:
+            try:
+                self.population = int(input("Enter the city population: "))
+                break
+            except ValueError as e:
+                print("Population should be int")
         self.zipCode = input("Enter the city zipCode: ")
         self.telephoneCode = input("Enter the city telephoneCode: ")
 
-    def display_city(self):
-        print(f"Information about the city: "
-              f"name - {self.name}, "
-              f"region - {self.region}, "
-              f"population - {self.population},"
-              f"telephoneCode - {self.telephoneCode},"
-              f"country - {self.country},"
-              f"zipCode - {self.zipCode}")
+    def __str__(self):
+        return (f"Information about the city: "
+                f"name - {self.name}, "
+                f"region - {self.region}, "
+                f"population - {self.population},"
+                f"telephoneCode - {self.telephoneCode},"
+                f"country - {self.country},"
+                f"zipCode - {self.zipCode}")
 
+    def __add__(self, some_population):
+        self.population += some_population
+        return self
 
-class Human:
-    def __init__(self, name, birthday, phone, city, country, address):
-        self.name = name
-        self.birthday = birthday
-        self.phone = phone
-        self.city = city
-        self.country = country
-        self.address = address
+    def __sub__(self, some_population):
+        if some_population > self.population:
+            print("Population cannot be changed")
+        else:
+            self.population -= some_population
+            return self
 
-    def create_human(self):
-        print("Enter the information about the human: ")
-        self.name = input("Enter the human name: ")
-        self.birthday = input("Enter the human birthday: ")
-        self.phone = input("Enter the human phone: ")
-        self.city = input("Enter the human city: ")
-        self.country = input("Enter the human country: ")
-        self.address = input("Enter the human address: ")
+    def __eq__(self, other):
+        return self.population == other.population
 
-    def display_human(self):
-        print(f"Information about the human: "
-              f"name - {self.name}, "
-              f"birthday - {self.birthday}, "
-              f"phone - {self.phone},"
-              f"city - {self.city},"
-              f"country - {self.country},"
-              f"address - {self.address}")
+    def __gt__(self, other):
+        return self.population > other.population
 
+    def __lt__(self, other):
+        return self.population < other.population
 
-first_country = Country("", "", "", "", "", "")
-first_country.create_country()
-first_country.display_country()
-first_country.update_country(population=111111, telephoneCode=111)
-first_country.add_city_to_country("Kyiv")
-first_country.delete_city_from_country("Kyiv")
 
 first_city = City("", "", "", "", "", "")
-first_city.create_city()
-first_city.display_city()
+second_city = City("", "", "", "", "", "")
 
-first_human = Human("", "", "", "", "", "")
-first_human.create_human()
-first_human.display_human()
+first_city.create_city()
+second_city.create_city()
+
+print(first_city)
+print(second_city)
+
+print(first_city + 1000)
+print(second_city - 1000)
+
+if first_city == second_city:
+    print("This cities have the same population")
+elif first_city > second_city:
+    print("First city is bigger than the second one")
+elif first_city < second_city:
+    print("Second city is bigger than the first one")
