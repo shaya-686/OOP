@@ -1,71 +1,73 @@
-class City:
-    def __init__(self, name, region, country, population, zipCode, telephoneCode):
-        self.name = name
-        self.region = region
-        self.country = country
-        self.population = population
-        self.zipCode = zipCode
-        self.telephoneCode = telephoneCode
+class Clock:
+    def __init__(self, model, brand, year, price, clockType):
+        self.model = model
+        self.brand = brand
+        self.year = year
+        self.price = price
+        self.clockType = clockType
 
-    def create_city(self):
-        print("Enter the information about the city: ")
-        self.name = input("Enter the city name: ")
-        self.region = input("Enter the city region: ")
-        self.country = input("Enter the city country: ")
+    def create_clock(self):
+        print("Enter the information about the clock: ")
+        self.model = input("Enter the clock model: ")
+        self.brand = input("Enter the clock brand: ")
+        self.clockType = input("Enter the clockType: ")
         while True:
             try:
-                self.population = int(input("Enter the city population: "))
+                self.year = int(input("Enter the clock year: "))
                 break
             except ValueError as e:
-                print("Population should be int")
-        self.zipCode = input("Enter the city zipCode: ")
-        self.telephoneCode = input("Enter the city telephoneCode: ")
+                print("Year should be int")
+        while True:
+            try:
+                self.price = float(input("Enter the clock price: "))
+                break
+            except ValueError as e:
+                print("Price should be float")
 
     def __str__(self):
-        return (f"Information about the city: "
-                f"name - {self.name}, "
-                f"region - {self.region}, "
-                f"population - {self.population},"
-                f"telephoneCode - {self.telephoneCode},"
-                f"country - {self.country},"
-                f"zipCode - {self.zipCode}")
+        return (f"Information about the clock: "
+                f"model - {self.model}, "
+                f"brand - {self.brand}, "
+                f"year - {self.year},"
+                f"price - {self.price},"
+                f"clockType - {self.clockType}")
 
-    def __add__(self, some_population):
-        self.population += some_population
+    def __add__(self, some_price):
+        self.price += some_price
         return self
 
-    def __sub__(self, some_population):
-        if some_population > self.population:
-            print("Population cannot be changed")
+    def __sub__(self, some_price):
+        if some_price > self.price:
+            print("Price cannot be changed")
         else:
-            self.population -= some_population
+            self.price -= some_price
             return self
 
     def __eq__(self, other):
-        return self.population == other.population
+        return self.price == other.price
 
     def __gt__(self, other):
-        return self.population > other.population
+        return self.price > other.price
 
     def __lt__(self, other):
-        return self.population < other.population
+        return self.price < other.price
 
 
-first_city = City("", "", "", "", "", "")
-second_city = City("", "", "", "", "", "")
+first_clock = Clock("", "", "", "", "")
+second_clock = Clock("", "", "", "", "")
 
-first_city.create_city()
-second_city.create_city()
+first_clock.create_clock()
+second_clock.create_clock()
 
-print(first_city)
-print(second_city)
+print(first_clock)
+print(second_clock)
 
-print(first_city + 1000)
-print(second_city - 1000)
+print(first_clock + 1000)
+print(second_clock - 1000)
 
-if first_city == second_city:
-    print("This cities have the same population")
-elif first_city > second_city:
-    print("First city is bigger than the second one")
-elif first_city < second_city:
-    print("Second city is bigger than the first one")
+if first_clock == second_clock:
+    print("This clocks have the same price")
+elif first_clock > second_clock:
+    print("First clock is more expensive than the second one")
+elif first_clock < second_clock:
+    print("Second clock is more expensive than the first one")
