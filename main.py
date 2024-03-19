@@ -1,37 +1,16 @@
-class BankAccount:
-    def __init__(self, balance):
-        self.__balance = balance
+class Apartment:
+    def __init__(self, num_rooms, area):
+        self.__num_rooms = num_rooms
+        self.__area = area
 
-    def get_balance(self):
-        return self.__balance
+    def get_num_rooms(self):
+        return self.__num_rooms
 
-    def deposit(self, amount):
-        """
-        Add some amount on balance
-        :param amount: (int, float) - addition amount of money
-        :return: None
-        """
-        self.__balance += amount
-
-    def withdraw(self, amount):
-        if amount < self.__balance:
-            self.__balance -= amount
-        else:
-            print("Not enough balance")
+    def get_area(self):
+        return self.__area
 
 
-account = BankAccount(100)
-print(account.get_balance())
-
-account.deposit(55)
-print(account.get_balance())
-
-account.withdraw(60)
-print(account.get_balance())
-
-account.withdraw(200)
-print(account.get_balance())
-
-account.__balance
-
+apartment = Apartment(4, 45)
+print(f'{apartment.get_num_rooms()=}')
+print(f'{apartment.get_area()=}')
 
