@@ -1,16 +1,25 @@
-class Apartment:
-    def __init__(self, num_rooms, area):
-        self.__num_rooms = num_rooms
-        self.__area = area
+class Event:
+    def __init__(self, name, date, desc):
+        self.__name = name
+        self.__date = date
+        self.__desc = desc
 
-    def get_num_rooms(self):
-        return self.__num_rooms
+    def get_name(self):
+        return self.__name
 
-    def get_area(self):
-        return self.__area
+    def get_date(self):
+        return self.__date
 
+    def get_desc(self):
+        return self.__desc
 
-apartment = Apartment(4, 45)
-print(f'{apartment.get_num_rooms()=}')
-print(f'{apartment.get_area()=}')
+    def set_date(self, new_date):
+        self.__date = new_date
+
+    def set_desc(self, new_desc):
+        self.__desc = new_desc
+
+    def __str__(self):
+        return f"Name: {self.__name}, date: {self.__date}, desc: {self.__desc}"
+
 
