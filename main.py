@@ -1,86 +1,99 @@
-class Taxi:
-    carTypes = {"Economy": 100, "Standard": 200, "Comfort": 300}
-
-    def __init__(self):
-        self.__client = None
-        self.__carType = None
-        self.__address = None
-        self.__cost = None
-
-    def get_client(self):
-        return self.__client
-
-    def get_car_type(self):
-        return self.__carType
-
-    def get_address(self):
-        return self.__address
-
-    def get_cost(self):
-        return self.__cost
-
-    def set_car_type(self, new_car_type):
-        if str(new_car_type).capitalize() not in Taxi.carTypes.keys():
-            print(f"You should choose the carType type from the list: {Taxi.carTypes}")
-        else:
-            self.__carType = new_car_type.capitalize()
-            self.__cost = Taxi.carTypes[self.__carType]
-
-    def set_address(self, new_address):
-        self.__address = new_address
-
-    def __str__(self):
-        return f"Client: {self.__client}, car type: {self.__carType}, address: {self.__address}, cost: {self.__cost}"
-
-    def add_taxi(self):
-        while True:
-            try:
-                self.__client = input("Enter the client name: ").capitalize()
-                if len(self.__client) == 0:
-                    raise ValueError(f"The number of symbols for client name should be bigger than 0")
-                else:
-                    break
-            except ValueError as e:
-                print("Message: ", e)
-
-        while True:
-            try:
-                self.__carType = input("Enter the car type: ").capitalize()
-                if self.__carType not in Taxi.carTypes.keys():
-                    raise ValueError(f"Choose car type from the existing values {Taxi.carTypes.keys()}")
-                else:
-                    break
-            except ValueError as e:
-                print("Message: ", e)
-        while True:
-            try:
-                self.__address = input("Enter the client address: ")
-                if len(self.__address) == 0:
-                    raise ValueError(f"The number of symbols for client address should be bigger than 0")
-                else:
-                    break
-            except ValueError as e:
-                print("Message: ", e)
-        self.__cost = Taxi.carTypes[self.__carType]
-
-    def __del__(self):
-        print("Taxi deleted!")
-        del self
+# Human
+import math
 
 
-taxi = Taxi()
-print(taxi)
-taxi.add_taxi()
+class Human:
+    human_count = 0
 
-print(f"{taxi.get_client()=}")
-print(f"{taxi.get_car_type()=}")
-print(f"{taxi.get_address()=}")
-print(f"{taxi.get_cost()=}")
+    def __init__(self, name, birthday, phone, city, country, address):
+        self.__name = name
+        self.__birthday = birthday
+        self.__phone = phone
+        self.__city = city
+        self.__country = country
+        self.__address = address
+        Human.human_count += 1
 
-taxi.set_car_type("Standard")
-print(taxi)
+    @staticmethod
+    def get_human_count():
+        return Human.human_count
 
-taxi.set_address("New address")
-print(taxi)
 
-del taxi
+first_human = Human("Bob", "20000212", "38011111111", "Roma", "Italy", "First human address")
+second_human = Human("Alice", "20000312", "38022222222", "Roma", "Italy", "Second human address")
+
+print(f"Number of human: {Human.get_human_count()}")
+
+
+# geometric shapes
+class GeometricShapes:
+    count = 0
+
+    @staticmethod
+    def triangle_area_herons_formula(a, b, c):
+        p = (a + b + c) / 2
+        GeometricShapes.counter()
+        return round(pow(p * (p - a) * (p - b) * (p - c), 0.5), 2)
+
+    @staticmethod
+    def triangle_area_coordinates_formula(x1, y1, x2, y2, x3, y3):
+        GeometricShapes.counter()
+        return 0.5 * abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2))
+
+    @staticmethod
+    def rectangle_area_formula(a, b):
+        GeometricShapes.counter()
+        return a * b
+
+    @staticmethod
+    def square_area_formula(a):
+        GeometricShapes.counter()
+        return a ** 2
+
+    @staticmethod
+    def diamond_area_formula(d1, d2):
+        GeometricShapes.counter()
+        return d1 * d2 / 2
+
+    @staticmethod
+    def counter():
+        GeometricShapes.count += 1
+
+    @staticmethod
+    def get_count():
+        return GeometricShapes.count
+
+
+print(f"{GeometricShapes.triangle_area_herons_formula(4, 5, 6)=}")
+print(f"{GeometricShapes.triangle_area_coordinates_formula(1,3,5,9,7,3)=}")
+print(f"{GeometricShapes.rectangle_area_formula(4,5)=}")
+print(f"{GeometricShapes.square_area_formula(4)=}")
+print(f"{GeometricShapes.diamond_area_formula(4, 8)=}")
+print(GeometricShapes.get_count())
+
+
+# MathOperations
+
+class MathOperations:
+
+    @staticmethod
+    def maximum(a, b, c, d):
+        return max(a, b, c, d)
+
+    @staticmethod
+    def minimum(a, b, c, d):
+        return min(a, b, c, d)
+
+    @staticmethod
+    def average(a, b, c, d):
+        return (a + b + c + d) / 4
+
+    @staticmethod
+    def factorial(num):
+        return math.factorial(num)
+
+
+print(f"{MathOperations.maximum(5,6,7,8)=}")
+print(f"{MathOperations.minimum(5,6,7,8)=}")
+print(f"{MathOperations.average(5,6,7,8)=}")
+print(f"{MathOperations.factorial(4)=}")
