@@ -97,3 +97,75 @@ print(f"{MathOperations.maximum(5,6,7,8)=}")
 print(f"{MathOperations.minimum(5,6,7,8)=}")
 print(f"{MathOperations.average(5,6,7,8)=}")
 print(f"{MathOperations.factorial(4)=}")
+
+
+# FileUtils
+class FileUtils:
+    @staticmethod
+    def count_lines(path):
+        try:
+            with open(path, 'r', encoding="utf-8") as file:
+                return len(file.readlines())
+        except FileNotFoundError as e:
+            print("Message: ", e)
+
+
+file_path = "new_file.txt"
+print(f"{FileUtils.count_lines(file_path)=}")
+
+
+# Character
+class Character:
+
+    def __init__(self, name, health, damage):
+        self.__name = name
+        self.__health = health
+        self.__damage = damage
+
+    def get_name(self):
+        return self.__name
+
+    def get_health(self):
+        return self.__health
+
+    def get_damage(self):
+        return self.__damage
+
+    def attack(self, other):
+        if self.__damage > other.__health:
+            print(f"{self.__name} win!")
+        else:
+            print(f"{other.__name} win!")
+
+
+character1 = Character("Bob", 200, 100)
+character2 = Character("Alice", 500, 200)
+character1.attack(character2)
+
+
+# student
+class Student:
+    available_courses = ["Math", "Literature", "English"]
+
+    def __init__(self, name, age, grade):
+        self.__name = name
+        self.__age = age
+        self.__grade = grade
+        self.__courses = []
+
+    def get_courses(self):
+        return self.__courses
+
+    def add_course(self, course):
+        try:
+            if course in Student.available_courses:
+                self.__courses.append(course)
+            else:
+                raise ValueError(f"You should the course from the list {Student.available_courses}")
+        except ValueError as e:
+            print("Message: ", e)
+
+
+student = Student("Alice", 15, "A")
+student.add_course("Math")
+print(student.get_courses())
