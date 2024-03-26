@@ -1,223 +1,175 @@
-# fraction
+# inheritance
 
-class Fraction:
-    __count = 0
+class Animal:
+    def sound(self):
+        print("Hrrr")
 
-    def __init__(self, nominator, denominator):
-        self.__nominator = nominator
-        self.__denominator = denominator
-        Fraction.__count += 1
-
-    @staticmethod
-    def get_count():
-        return Fraction.__count
-
-    def display_fraction(self):
-        print(f"{self.__nominator}/{self.__denominator}")
-
-    def add(self, other_fraction):
-        result_nominator = self.__nominator * other_fraction.__denominator + other_fraction.__nominator * self.__denominator
-        result_denominator = other_fraction.__denominator * self.__denominator
-        return Fraction(result_nominator, result_denominator)
-
-    def subtract(self, other_fraction):
-        result_nominator = self.__nominator * other_fraction.__denominator - other_fraction.__nominator * self.__denominator
-        result_denominator = other_fraction.__denominator * self.__denominator
-        return Fraction(result_nominator, result_denominator)
-
-    def multiply(self, other_fraction):
-        result_nominator = self.__nominator * other_fraction.__nominator
-        result_denominator = other_fraction.__denominator * self.__denominator
-        return Fraction(result_nominator, result_denominator)
-
-    def divide(self, other_fraction):
-        result_nominator = self.__nominator * other_fraction.__denominator
-        result_denominator = other_fraction.__nominator * self.__denominator
-        return Fraction(result_nominator, result_denominator)
+    def make_noise(self):
+        self.sound()
+        self.sound()
+        self.sound()
 
 
-first_fraction = Fraction(10, 20)
-new_fraction = Fraction(5, 20)
+class Dog(Animal):
+    def run(self):
+        print("Running")
 
-first_fraction.display_fraction()
-new_fraction.display_fraction()
-
-result_addition = first_fraction.add(new_fraction)
-result_addition.display_fraction()
-
-result_subtraction = first_fraction.subtract(new_fraction)
-result_subtraction.display_fraction()
-
-result_multiplication = first_fraction.multiply(new_fraction)
-result_multiplication.display_fraction()
-
-result_division = first_fraction.divide(new_fraction)
-result_division.display_fraction()
-
-print(f"{Fraction.get_count()=}")
+    def sound(self):
+        print("Hav")
 
 
-# Temperature
-class TemperatureConverter:
-    __count = 0
+class Cat(Animal):
+    def sound(self):
+        super().sound()
+        print("Meow")
 
-    @staticmethod
-    def celsius_to_fahrenheit(celsius_temp):
-        try:
-            fahrenheit_temp = celsius_temp * 9 / 5 + 32
-            TemperatureConverter.__count += 1
-            return round(fahrenheit_temp, 2)
-        except TypeError as e:
-            print("Message: ", e)
-            return -1
-
-    @staticmethod
-    def fahrenheit_to_celsius(fahrenheit_temp):
-        try:
-            celsius_temp = (fahrenheit_temp - 32) * 5 / 9
-            TemperatureConverter.__count += 1
-            return round(celsius_temp, 2)
-        except TypeError as e:
-            print("Message: ", e)
-            return -1
-
-    @staticmethod
-    def get_count():
-        return TemperatureConverter.__count
+    def get_super(self):
+        print(super())
 
 
-print(f"{TemperatureConverter.celsius_to_fahrenheit(10)=}")
-print(f"{TemperatureConverter.fahrenheit_to_celsius(100)=}")
-print(f"{TemperatureConverter.celsius_to_fahrenheit(15)=}")
-print(f"{TemperatureConverter.fahrenheit_to_celsius(210)=}")
-print(f"{TemperatureConverter.get_count()=}")
+# obj = Dog()
+# obj.sound()
+# obj.make_noise()
+# obj = Cat()
+# obj.sound()
+# obj.get_super()
+
+class Figure:
+    def __init__(self, area):
+        self._area = area
+        print("Init from Figure")
+
+    def _method(self):
+        print("Hello")
 
 
-# Converter
-class Converter:
-    @staticmethod
-    def check_value(value):
-        try:
-            if type(value) in (float, int):
-                if value >= 0:
-                    return True
-                else:
-                    raise ValueError("Value should be bigger than 0")
-            else:
-                raise TypeError("Value should be int or float")
-        except TypeError as e:
-            print("Message: ", e)
-            return False
-        except ValueError as e:
-            print("Message: ", e)
-            return False
-        except Exception as e:
-            print("Message: ", e)
-            return False
+class Circle(Figure):
+    def __init__(self, area, radius):
+        super().__init__(area)
+        self.__radius = radius
+        print("Init circle")
 
-    @staticmethod
-    def meters_to_feet(meters):
-        if Converter.check_value(meters):
-            feet = meters * 3.28084
-            return feet
-        else:
-            return -1
-
-    @staticmethod
-    def feet_to_meters(feet):
-        if Converter.check_value(feet):
-            meters = feet / 3.28084
-            return meters
-        else:
-            return -1
-
-    @staticmethod
-    def kilometers_to_miles(kilometers):
-        if Converter.check_value(kilometers):
-            miles = kilometers / 1.60934
-            return miles
-        else:
-            return -1
-
-    @staticmethod
-    def miles_to_kilometers(miles):
-        if Converter.check_value(miles):
-            kilometers = miles * 1.60934
-            return kilometers
-        else:
-            return -1
-
-    @staticmethod
-    def kilograms_to_pounds(kilograms):
-        if Converter.check_value(kilograms):
-            pounds = kilograms * 2.20462
-            return pounds
-        else:
-            return -1
-
-    @staticmethod
-    def pounds_to_kilograms(pounds):
-        if Converter.check_value(pounds):
-            kilograms = pounds / 2.20462
-            return kilograms
-        else:
-            return -1
+    def print_info(self):
+        print(f"{self._area=}")
+        print(f"{self.__radius=}")
+        super()._method()
 
 
-print(f"{Converter.meters_to_feet(10)=}")
-print(f"{Converter.feet_to_meters(100)=}")
-print(f"{Converter.kilometers_to_miles(10)=}")
-print(f"{Converter.miles_to_kilometers(20)=}")
-
-print(f"{Converter.kilograms_to_pounds(10)=}")
-print(f"{Converter.pounds_to_kilograms(22)=}")
+# obj = Circle(20, 3)
+# obj.print_info()
 
 
-# information system
-class InformationSystem:
-    __data = {}
+# School
+class Person:
+    def __init__(self, name, age, gender):
+        self._name = name
+        self._age = age
+        self._gender = gender
 
-    @classmethod
-    def add_user(cls, user):
-        try:
-            if user in cls.__data:
-                raise KeyError(f"{user} has already exist")
-            else:
-                cls.__data[user] = []
-        except KeyError as e:
-            print("Message: ", e)
-        except Exception as e:
-            print("Message: ", e)
-
-    @classmethod
-    def add_contact(cls, user, contact):
-        try:
-            if user in cls.__data:
-                if contact not in cls.__data[user]:
-                    cls.__data[user].append(contact)
-                else:
-                    raise ValueError(f"{contact} has already exist")
-            else:
-                raise KeyError(f"User {user} is not found")
-        except KeyError as e:
-            print("Message: ", e)
-        except ValueError as e:
-            print("Message: ", e)
-        except Exception as e:
-            print("Message: ", e)
-
-    @classmethod
-    def system_info(cls):
-        print(f"{cls.__data}")
+    def get_name(self):
+        return self._name
 
 
-InformationSystem.add_user("Bob")
-InformationSystem.add_user("Bob")
-InformationSystem.add_user("Mike")
+class Student(Person):
+    def __init__(self, name, age, gender, student_id):
+        super().__init__(name, age, gender)
+        self._student_id = student_id
 
-InformationSystem.add_contact("Bob", "Marie: 3805555555555")
-InformationSystem.add_contact("Bob", "Marie: 3805555555555")
-InformationSystem.add_contact("Bob", "Jack: 3805555555555")
-InformationSystem.add_contact("Mike", "Bob: 3805555555555")
+    def get_id(self):
+        return self._student_id
 
-InformationSystem.system_info()
+    def set_id(self, new_id):
+        self._student_id = new_id
+
+    def get_info(self, objects):
+        print(f"Student {self._name} objects:")
+        for i, object in enumerate(objects):
+            print(f"{i + 1}.{object}")
+
+
+class Teacher(Person):
+    def __init__(self, name, age, gender, employee_id):
+        super().__init__(name, age, gender)
+        self._employee_id = employee_id
+        self._students = []
+
+    def get_id(self):
+        return self._employee_id
+
+    def set_id(self, new_id):
+        self._employee_id = new_id
+
+    def get_info(self, objects):
+        print(f"Employee {self._name} objects:")
+        for i, object in enumerate(objects):
+            print(f"{i + 1}.{object}")
+
+    def add_student(self, student: Student):
+        self._students.append(student)
+
+    def add_grade(self, grade):
+        for student in self._students:
+            print(f"{student.get_name()} get {grade}")
+
+
+student1 = Student("John", 27, "male", "0001233")
+student2 = Student("Mike", 27, "male", "0001233")
+student1.get_info(["Math", "Python", "C++"])
+
+teacher = Teacher("Anna", 35, "female", "9991234")
+teacher.add_student(student1)
+teacher.add_student(student2)
+teacher.add_grade(12)
+
+
+# MusicShop
+class Product:
+    def __init__(self, name, price, quantity):
+        self._name = name
+        self._price = price
+        self._quantity = quantity
+
+
+
+class CD(Product):
+    def __init__(self, name, price, quantity, singer, song_quantity):
+        super().__init__(name, price, quantity)
+        self._singer = singer
+        self._song_quantity = song_quantity
+
+    def get_singer(self):
+        return self._singer
+
+    def set_singer(self, new_singer):
+        self._singer = new_singer
+
+    def get_song_quantity(self):
+        return self._song_quantity
+
+    def set_song_quantity(self, new_song_quantity):
+        self._song_quantity = new_song_quantity
+
+
+
+class MusicalInstrument(Product):
+    def __init__(self, name, price, quantity, instrument_type, material):
+        super().__init__(name, price, quantity)
+        self._instrument_type = instrument_type
+        self._material = material
+
+    def get_instrument_type(self):
+        return self._instrument_type
+
+    def set_instrument_type(self, new_instrument_type):
+        self._instrument_type = new_instrument_type
+
+    def get_material(self):
+        return self._material
+
+    def set_material(self, new_material):
+        self._material = new_material
+
+
+cd = CD("cd_name", 200, 1, "Ocean Elsa", 10)
+print(cd.get_singer())
+
