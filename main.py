@@ -1,3 +1,2 @@
-#human
-#passport
-#animal
+#device
+#money
